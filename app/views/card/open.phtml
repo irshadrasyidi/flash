@@ -1,0 +1,30 @@
+<?php foreach ($cardsData as $key => $card) { ?>
+    <div class="jumbotron" style="margin-top: 0.3rem; background-color: #8ffffd;">
+        <h5>
+            Frontside
+        </h5>
+        <hr style="border-width: 3px; border-color: #999999; border-radius: 5px; width:35%; margin-left:0;">
+        <div class="display-4">
+            <?php echo $card->frontside;?>
+        </div>
+    </div>
+
+    <div class="jumbotron" style="background-color: #8fffbc;">
+        <h5>
+            Backside
+        </h5>
+        <hr style="border-width: 3px; border-color: #999999; border-radius: 5px; width:35%; margin-left:0;">
+        <div class="display-4">
+            <?php echo $card->backside;?>
+        </div>
+    </div>
+
+    <?php 
+        echo $this->tag->linkTo([
+            "/user/profile/deck/".$this->session->get('DECK_ON'),
+            'Back',
+            "class" => "btn btn-secondary",
+        ]);
+    ?>
+
+<?php } ?>

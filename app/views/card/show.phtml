@@ -1,0 +1,61 @@
+<h2>Manage <?php echo $deck->title?>'s Cards</h2>
+
+<p><?php echo $this->flash->output() ?></p>
+
+<?php 
+    echo $this->tag->linkTo([
+        "/card/create",
+        'Create Card',
+        "class" => "btn btn-primary",
+        "style" => "margin: 10pt;",
+    ]);
+
+?>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Front Side</th>
+            <th scope="col">Difficulty</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($cardsData->count())) { ?>
+            <?php foreach ($cardsData as $key => $card) { ?>
+                <tr>
+                    <th scope="row"><?php echo $key + 1; ?></th>
+                    <td>
+                        <?php
+                            echo $this->tag->linkTo(
+                                '/user/profile/deck/'.$deck->id.'/card/'.$card->id,
+                                $card->frontside,
+                            );
+                        ?>
+                    </td>
+                    <td><?php echo $card->difficulty; ?></td>
+                    <td><?php echo $this->tag->linkTo([
+                                "card/delete/".$card->id,
+                                'Delete',
+                                "class" => "btn btn-danger",
+                                "style" => "margin: 10pt;",
+                                "onclick" => "return confirm('Are you sure?')",
+                            ]);
+                        ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } ?>
+    </tbody>
+</table>
+
+<?php 
+    echo $this->tag->linkTo([
+        "/user/profile",
+        'Back',
+        "class" => "btn btn-secondary",
+        "style" => "margin: 10pt;",
+    ]);
+
+?>

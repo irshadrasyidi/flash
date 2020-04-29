@@ -1,0 +1,65 @@
+<div class="container">
+    <!-- <h2>User Profile</h2> -->
+    <br>
+    <p><?php echo $this->flash->output() ?></p>
+
+    <div class="jumbotron">
+        <div class="card-body">
+            <h4 class="display-4" style="margin-bottom: 2rem;">Welcome to <?= $this->session->get('AUTH_NAME') ?>'s Decks</h4>
+            <!-- <p class="card-text"><?= $this->session->get('AUTH_EMAIL') ?></p> -->
+            <!-- <p class="card-text"><small class="text-muted">Created at <?=  date('d-m-Y H:m:s', $this->session->get('AUTH_CREATED')) ?></small></p> -->
+
+            <?php
+                if($this->session->has('IS_LOGIN'))
+                {
+                    echo $this->tag->linkTo([
+                        "deck/create",
+                        'Add Deck',
+                        "class" => "btn btn-primary",
+                    ]);
+                }
+
+            ?>
+        </div>
+
+        <div class="card-columns" style="display: inline-block;">
+            
+                <?php if (!empty($decksData->count())) { ?>
+                    <?php foreach ($decksData as $key => $deck) { ?>
+                        <div class="card" style="margin: 2rem;">
+                            <div class="container " style="margin: 2rem;">
+                                <div class="container">
+                                    <h4>
+                                        <?php
+                                            // echo $deck->title;
+                                            echo $this->tag->linkTo([
+                                                "/user/profile/deck/".$deck->id,
+                                                $deck->title,
+                                                "class" => "h1",
+                                                "style" => "margin: 10pt;",
+                                                "title" => "Cards Management"
+                                            ]);
+                                        ?>
+                                    </h4>
+                                </div>
+                            </div>
+                            <?php
+                                echo $this->tag->linkTo([
+                                    "deck/delete/".$deck->id,
+                                    'delete',
+                                    "class" => "btn btn-danger",
+                                    "style" => "margin: 10pt;",
+                                    "onclick" => "return confirm('Are you sure?')",
+                                    "title" => "Delete"
+                                ]);
+                            ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            
+        </div>
+
+    </div>
+
+    <?= $this->tag->linkTo(["user/logout", '<i class="fa fa-sign-out" aria-hidden="true"></i> Logout', "class" => "btn btn-danger"]); ?>
+</div>

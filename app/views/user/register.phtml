@@ -1,0 +1,31 @@
+<h2>Register Form</h2>
+
+<p><?php echo $this->flash->output() ?></p>
+
+<?php echo $this->tag->form("user/register/submit"); ?>
+
+    <p>
+        <label for="name">Name</label>
+        <?php echo $form->render("name"); ?>
+    </p>
+
+    <p>
+        <label for="email">E-Mail</label>
+        <?php echo $form->render("email"); ?>
+    </p>
+
+    <p>
+        <label for="password">Password</label>
+        <?php echo $form->render("password"); ?>
+    </p>
+
+    <p>
+        <label for="password_confirm">Confirm Password</label>
+        <?php echo $form->render("password_confirm"); ?>
+    </p>
+
+    <p>
+        <?php echo $form->render("submit"); ?>
+    </p>
+
+</form>

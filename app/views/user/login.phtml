@@ -1,0 +1,21 @@
+<h2>Login Form</h2>
+
+<p><?php echo $this->flash->output() ?></p>
+
+<?php echo $this->tag->form("user/login/submit"); ?>
+
+    <p>
+        <label for="email">E-Mail</label>
+        <?php echo $form->render("email"); ?>
+    </p>
+
+    <p>
+        <label for="password">Password</label>
+        <?php echo $form->render("password"); ?>
+    </p>
+
+    <p>
+        <?php echo $form->render("submit"); ?>
+    </p>
+
+</form>
