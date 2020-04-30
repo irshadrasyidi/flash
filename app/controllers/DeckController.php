@@ -91,4 +91,57 @@ class DeckController extends ControllerBase
         }
     }
 
+    public function editAction($deckId)
+    {
+        if (!$this->request->isPost()) {
+
+            $deck = Decks::findFirstById($deckId);
+            if (!$deck) {
+                $this->flash->error("Deck not found");
+    
+                return $this->forward("user/profile");
+            }
+            $this->session->set('DECK_ON', $deck->id);
+            $this->view->form = new CreateDeckForm($deck, array('edit' => true));
+        }
+
+    }
+
+    public function editSubmitAction()
+    {
+        // echo "edited";
+        // exit;
+        $this->createDeckForm->bind($_POST, $this->deckModel);
+
+        if (!$this->createDeckForm->isValid()) {
+            foreach ($this->createDeckForm->getMessages() as $message) {
+                $this->flash->error($message);
+                $this->dispatcher->forward([
+                    'controller' => $this->router->getControllerName(),
+                    'action'     => 'edit',
+                ]);
+                return;
+            }
+        }
+
+        $this->deckModel->setId($this->session->get('DECK_ON'));
+        $this->deckModel->setUserId($this->session->get('AUTH_ID'));
+
+        if (!$this->deckModel->save()) {
+            foreach ($this->deckModel->getMessages() as $m) {
+                $this->flash->error($m);
+                $this->dispatcher->forward([
+                    'controller' => $this->router->getControllerName(),
+                    'action'     => 'edit',
+                ]);
+                return;
+            }
+        }
+
+        $this->flash->success('Deck created');
+        return $this->response->redirect('user/profile');
+
+        $this->view->disable();
+    }
+
 }

@@ -52,6 +52,14 @@
                                     "onclick" => "return confirm('Are you sure?')",
                                     "title" => "Delete"
                                 ]);
+
+                                echo $this->tag->linkTo([
+                                    "deck/edit/".$deck->id,
+                                    'edit',
+                                    "class" => "btn btn-warning",
+                                    "style" => "margin: 10pt;",
+                                    "title" => "Edit"
+                                ]);
                             ?>
                         </div>
                     <?php } ?>

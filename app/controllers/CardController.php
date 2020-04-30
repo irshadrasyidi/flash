@@ -156,4 +156,58 @@ class CardController extends ControllerBase
         // exit;
     }
 
+    public function editAction($cardId)
+    {
+        if (!$this->request->isPost()) {
+
+            $card = Cards::findFirstById($cardId);
+            if (!$card) {
+                $this->flash->error("Deck not found");
+    
+                return $this->forward("user/profile");
+            }
+            $this->session->set('CARD_ON', $card->id);
+            $this->view->form = new CreateCardForm($card, array('edit' => true));
+        }
+
+    }
+
+    public function editSubmitAction()
+    {
+        // echo "edited";
+        // exit;
+        $this->createCardForm->bind($_POST, $this->cardModel);
+
+        if (!$this->createCardForm->isValid()) {
+            foreach ($this->createCardForm->getMessages() as $message) {
+                $this->flash->error($message);
+                $this->dispatcher->forward([
+                    'controller' => $this->router->getControllerName(),
+                    'action'     => 'edit',
+                ]);
+                return;
+            }
+        }
+
+        $this->cardModel->setId($this->session->get('CARD_ON'));
+        $this->cardModel->setDeckId($this->session->get('DECK_ON'));
+        $this->cardModel->setUserId($this->session->get('AUTH_ID'));
+
+        if (!$this->cardModel->save()) {
+            foreach ($this->cardModel->getMessages() as $m) {
+                $this->flash->error($m);
+                $this->dispatcher->forward([
+                    'controller' => $this->router->getControllerName(),
+                    'action'     => 'edit',
+                ]);
+                return;
+            }
+        }
+
+        $this->flash->success('Card created');
+        return $this->response->redirect('user/profile/deck/'.$this->session->get('DECK_ON'));
+
+        $this->view->disable();
+    }
+
 }

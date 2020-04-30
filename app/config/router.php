@@ -93,5 +93,28 @@ $router->add('/user/profile/deck/{idDeck}/card/{idCard}',
     'action' => 'open',
 ]);
 
+$router->add('/deck/edit/{id}',
+[
+    'controller' => 'deck',
+    'action' => 'edit',
+]);
+
+$router->add('/deck/edit/submit',
+[
+    'controller' => 'deck',
+    'action' => 'editSubmit',
+]);
+
+$router->add('/card/edit/{id}',
+[
+    'controller' => 'card',
+    'action' => 'edit',
+]);
+
+$router->add('/card/edit/submit',
+[
+    'controller' => 'card',
+    'action' => 'editSubmit',
+]);
 
 $router->handle($_SERVER['REQUEST_URI']);
