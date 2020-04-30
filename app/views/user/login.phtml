@@ -1,21 +1,28 @@
-<h2>Login Form</h2>
+<div class="container">
+    <h2 style="margin-top: 1rem;">Login here!</h2>
 
-<p><?php echo $this->flash->output() ?></p>
+    <p><?php echo $this->flash->output() ?></p>
 
-<?php echo $this->tag->form("user/login/submit"); ?>
+    <div class="jumbotron" style="padding: 2rem;  width: 50%;">
+        <?php echo $this->tag->form("user/login/submit"); ?>
 
-    <p>
-        <label for="email">E-Mail</label>
-        <?php echo $form->render("email"); ?>
-    </p>
+            <div class="form-group" style="width: 90%;">
+                <label for="email">E-Mail</label>
+                <?php echo $form->render("email"); ?>
+            </div>
 
-    <p>
-        <label for="password">Password</label>
-        <?php echo $form->render("password"); ?>
-    </p>
+            <div class="form-group" style="width: 90%;">
+                <label for="password">Password</label>
+                <?php echo $form->render("password"); ?>
+            </div>
 
-    <p>
-        <?php echo $form->render("submit"); ?>
-    </p>
+            <div class="form-group" style="margin-top: 2rem;">
+                <?php echo $form->render("submit"); ?>
+            </div>
 
-</form>
+        </form>
+
+        <p style="margin-top: 2rem;">Don't have an account? Register <a href="register">here!</a></p>
+
+    </div>
+</div>

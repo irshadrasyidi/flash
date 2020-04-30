@@ -6,23 +6,34 @@
 
 <p>This page is located at <code>views/index/index.phtml</code></p> -->
 
-<h1>Welcome to FLASH</h1>
+<div class="jumbotron" style="margin-top: 1rem; background-image: url(public/img/black.jpg); background-size: cover;">
+    <div class="display-1"style="color: white; text-align: right;">FLASH</div>
+    <div class="display-4" style="color: white; text-align: right;">Learn everything</div>
+    <br>
+    <div class="container" style="text-align: right;">
+        <?php
 
-<h3>Lets Learn!</h3>
+            echo $this->tag->linkTo([
+                'user/register',
+                'Register here!',
+                "class" => "btn btn-light btn-lg pull-right",
+                "style" => "margin-top: 5rem; text-align: right;",
+            ]);
 
-<?php
+            echo $this->tag->linkTo([
+                'user/login',
+                'Login here!',
+                "class" => "btn btn-light btn-lg pull-right",
+                "style" => "margin-top: 5rem; margin-left: 5rem;",
+            ]);
+        ?>
+    </div>
+    
 
-    echo $this->tag->linkTo([
-        'user/register',
-        'Register here!',
-        "class" => "btn btn-primary",
-        "style" => "margin-top: 5rem;",
-    ]);
+</div>
 
-    echo $this->tag->linkTo([
-        'user/login',
-        'Login here!',
-        "class" => "btn btn-primary",
-        "style" => "margin-top: 5rem; margin-left: 5rem;",
-    ]);
-?>
+<blockquote class="blockquote">
+  <p class="mb-0">“Live as if you were to die tomorrow. Learn as if you were to live forever.”</p>
+  <footer class="blockquote-footer">Mahatma Gandhi</footer>
+</blockquote>
+

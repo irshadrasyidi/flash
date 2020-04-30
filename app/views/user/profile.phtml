@@ -3,71 +3,72 @@
     <br>
     <p><?php echo $this->flash->output() ?></p>
 
-    <div class="jumbotron">
+    <div class="jumbotron dark" style="background-color: #242424;">
         <div class="card-body">
-            <h4 class="display-4" style="margin-bottom: 2rem;">Welcome to <?= $this->session->get('AUTH_NAME') ?>'s Decks</h4>
-            <!-- <p class="card-text"><?= $this->session->get('AUTH_EMAIL') ?></p> -->
-            <!-- <p class="card-text"><small class="text-muted">Created at <?=  date('d-m-Y H:m:s', $this->session->get('AUTH_CREATED')) ?></small></p> -->
+            <h4 class="display-4" style="margin-bottom: 2rem; margin-top: -3rem; color: white;">Profile Decks</h4>
 
             <?php
                 if($this->session->has('IS_LOGIN'))
                 {
                     echo $this->tag->linkTo([
                         "deck/create",
-                        'Add Deck',
+                        'Add New Deck',
                         "class" => "btn btn-primary",
+                        "style" => "margin: 1rem;"
                     ]);
                 }
 
             ?>
+
+            <?= $this->tag->linkTo(["user/logout", '<i class="fa fa-sign-out" aria-hidden="true"></i> Logout', "class" => "btn btn-warning"]); ?>
+
         </div>
 
-        <div class="card-columns" style="display: inline-block;">
+        <div class="card-columns align-iten-sm-center" style="align-center">
             
-                <?php if (!empty($decksData->count())) { ?>
-                    <?php foreach ($decksData as $key => $deck) { ?>
-                        <div class="card" style="margin: 2rem;">
-                            <div class="container " style="margin: 2rem;">
-                                <div class="container">
-                                    <h4>
-                                        <?php
-                                            // echo $deck->title;
-                                            echo $this->tag->linkTo([
-                                                "/user/profile/deck/".$deck->id,
-                                                $deck->title,
-                                                "class" => "h1",
-                                                "style" => "margin: 10pt;",
-                                                "title" => "Cards Management"
-                                            ]);
-                                        ?>
-                                    </h4>
-                                </div>
-                            </div>
-                            <?php
-                                echo $this->tag->linkTo([
-                                    "deck/delete/".$deck->id,
-                                    'delete',
-                                    "class" => "btn btn-danger",
-                                    "style" => "margin: 10pt;",
-                                    "onclick" => "return confirm('Are you sure?')",
-                                    "title" => "Delete"
-                                ]);
-
-                                echo $this->tag->linkTo([
-                                    "deck/edit/".$deck->id,
-                                    'edit',
-                                    "class" => "btn btn-warning",
-                                    "style" => "margin: 10pt;",
-                                    "title" => "Edit"
-                                ]);
-                            ?>
+            <?php if (!empty($decksData->count())) { ?>
+                <?php foreach ($decksData as $key => $deck) { ?>
+                    <div class="card" style="margin-bottom: 2rem; float: none;">
+                        <div class="container " style="margin: 2rem;">
+                            <h4>
+                                <?php
+                                    // echo $deck->title;
+                                    echo $this->tag->linkTo([
+                                        "/user/profile/deck/".$deck->id,
+                                        $deck->title,
+                                        "class" => "h1",
+                                        "style" => "margin: 10pt; color: #242424;",
+                                        "title" => "Cards Management"
+                                    ]);
+                                ?>
+                            </h4>
                         </div>
-                    <?php } ?>
+                        <?php
+                            echo $this->tag->linkTo([
+                                "deck/delete/".$deck->id,
+                                'delete',
+                                "class" => "btn btn-danger",
+                                "style" => "margin: 10pt;",
+                                "onclick" => "return confirm('Are you sure?')",
+                                "title" => "Delete"
+                            ]);
+
+                            echo $this->tag->linkTo([
+                                "deck/edit/".$deck->id,
+                                'edit',
+                                "class" => "btn btn-info",
+                                "style" => "margin: 10pt;",
+                                "title" => "Edit"
+                            ]);
+                        ?>
+                    </div>
                 <?php } ?>
+            <?php } ?>
             
         </div>
 
     </div>
 
-    <?= $this->tag->linkTo(["user/logout", '<i class="fa fa-sign-out" aria-hidden="true"></i> Logout', "class" => "btn btn-danger"]); ?>
+    
+
 </div>
