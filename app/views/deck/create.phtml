@@ -1,19 +1,21 @@
-<h2>Create Deck Form</h2>
+<h2 style="margin-top: 1rem;">Create Deck Form</h2>
 
 <p><?php echo $this->flash->output() ?></p>
 
-<?php echo $this->tag->form("deck/create/submit"); ?>
+<div class="jumbotron" style="padding: 2rem;  width: 50%;">
+    <?php echo $this->tag->form("deck/create/submit"); ?>
 
-    <p>
-        <label for="title">Deck Title</label>
-        <?php echo $form->render("title"); ?>
-    </p>
+        <p>
+            <label for="title">Deck Title</label>
+            <?php echo $form->render("title"); ?>
+        </p>
 
-    <p>
-        <?php echo $form->render("save"); ?>
-    </p>
+        <p>
+            <?php echo $form->render("save"); ?>
+        </p>
 
-</form>
+    </form>
+</div>
 
 <?php 
     echo $this->tag->linkTo([

@@ -1,29 +1,31 @@
-<h2>Edit Card Form</h2>
+<h2 style="margin-top: 1rem;">Edit Card Form</h2>
 
 <p><?php echo $this->flash->output() ?></p>
 
-<?php echo $this->tag->form("/card/edit/submit"); ?>
+<div class="jumbotron" style="padding: 2rem;  width: 50%;">
+    <?php echo $this->tag->form("/card/edit/submit"); ?>
 
-    <p>
-        <label for="frontside">Front Side</label>
-        <?php echo $form->render("frontside"); ?>
-    </p>
+        <p>
+            <label for="frontside">Front Side</label>
+            <?php echo $form->render("frontside"); ?>
+        </p>
 
-    <p>
-        <label for="backside">Back Side</label>
-        <?php echo $form->render("backside"); ?>
-    </p>
+        <p>
+            <label for="backside">Back Side</label>
+            <?php echo $form->render("backside"); ?>
+        </p>
 
-    <p>
-        <label for="difficulty">Difficulty</label>
-        <?php echo $form->render("difficulty"); ?>
-    </p>
+        <p>
+            <label for="difficulty">Difficulty</label>
+            <?php echo $form->render("difficulty"); ?>
+        </p>
 
-    <p>
-        <?php echo $form->render("create"); ?>
-    </p>
+        <p>
+            <?php echo $form->render("create"); ?>
+        </p>
 
-</form>
+    </form>
+</div>
 
 <?php 
     echo $this->tag->linkTo([

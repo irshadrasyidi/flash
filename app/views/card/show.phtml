@@ -1,70 +1,74 @@
-<h2>Manage <?php echo $deck->title?>'s Cards</h2>
+<div class=container>
+    <br>
+    <div class="jumbotron dark" style="background-color: #242424;">
+        <div class="display-4" style="margin-bottom: 2rem; margin-top: -3rem; color: white;">Manage <?php echo $deck->title?>'s Cards</div>
 
-<p><?php echo $this->flash->output() ?></p>
+        <p><?php echo $this->flash->output() ?></p>
 
-<?php 
-    echo $this->tag->linkTo([
-        "/card/create",
-        'Create Card',
-        "class" => "btn btn-primary",
-        "style" => "margin: 10pt;",
-    ]);
+        <?php 
+            echo $this->tag->linkTo([
+                "/card/create",
+                'Create Card',
+                "class" => "btn btn-primary",
+                "style" => "margin: 2rem;",
+            ]);
 
-?>
+            echo $this->tag->linkTo([
+                "/user/profile",
+                'Back',
+                "class" => "btn btn-secondary",
+                "style" => "margin: 2rem;",
+            ]);
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Front Side</th>
-            <th scope="col">Difficulty</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (!empty($cardsData->count())) { ?>
-            <?php foreach ($cardsData as $key => $card) { ?>
+        ?>
+
+        <table class="table table-bordered table-light table-hover table-sm rounded" style="width: 75%">
+            <thead class="rounded">
                 <tr>
-                    <th scope="row"><?php echo $key + 1; ?></th>
-                    <td>
-                        <?php
-                            echo $this->tag->linkTo(
-                                '/user/profile/deck/'.$deck->id.'/card/'.$card->id,
-                                $card->frontside,
-                            );
-                        ?>
-                    </td>
-                    <td><?php echo $card->difficulty; ?></td>
-                    <td>
-                        <?php
-                            echo $this->tag->linkTo([
-                                "card/delete/".$card->id,
-                                'Delete',
-                                "class" => "btn btn-danger",
-                                "style" => "margin: 10pt;",
-                                "onclick" => "return confirm('Are you sure?')",
-                            ]);
-
-                            echo $this->tag->linkTo([
-                                "card/edit/".$card->id,
-                                'Edit',
-                                "class" => "btn btn-warning",
-                                "style" => "margin: 10pt;",
-                            ]);
-                        ?>
-                    </td>
+                    <th scope="col">No</th>
+                    <th scope="col">Front Side</th>
+                    <th scope="col">Difficulty</th>
+                    <th scope="col">Action</th>
                 </tr>
-            <?php } ?>
-        <?php } ?>
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                <?php if (!empty($cardsData->count())) { ?>
+                    <?php foreach ($cardsData as $key => $card) { ?>
+                        <tr>
+                            <th scope="row"><?php echo $key + 1; ?></th>
+                            <td>
+                                <?php
+                                    echo $this->tag->linkTo(
+                                        '/user/profile/deck/'.$deck->id.'/card/'.$card->id,
+                                        $card->frontside,
+                                    );
+                                ?>
+                            </td>
+                            <td><?php echo $card->difficulty; ?></td>
+                            <td>
+                                <?php
+                                    echo $this->tag->linkTo([
+                                        "card/delete/".$card->id,
+                                        'Delete',
+                                        "class" => "btn btn-danger btn-sm",
+                                        "style" => "margin: 10pt;",
+                                        "onclick" => "return confirm('Are you sure?')",
+                                    ]);
 
-<?php 
-    echo $this->tag->linkTo([
-        "/user/profile",
-        'Back',
-        "class" => "btn btn-secondary",
-        "style" => "margin: 10pt;",
-    ]);
+                                    echo $this->tag->linkTo([
+                                        "card/edit/".$card->id,
+                                        'Edit',
+                                        "class" => "btn btn-warning btn-sm",
+                                        "style" => "margin: 10pt;",
+                                    ]);
+                                ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+            </tbody>
+        </table>
 
-?>
+    </div>
+
+</div>
