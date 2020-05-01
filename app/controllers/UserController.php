@@ -60,7 +60,7 @@ class UserController extends ControllerBase
         ]);
 
         if ($user->active != 1) {
-            $this->flash->error("User Deactivate");
+            $this->flash->error("User not active");
             return $this->response->redirect('user/login');
         }
 
