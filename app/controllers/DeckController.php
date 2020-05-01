@@ -46,10 +46,6 @@ class DeckController extends ControllerBase
             }
         }
 
-
-        // if ($this->request->getPost('create') != NULL) {
-        //     $this->deckModel->setIsPublic(1);
-        // }
         
         // PENTING!
         // Set User ID

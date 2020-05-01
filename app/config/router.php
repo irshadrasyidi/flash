@@ -3,6 +3,7 @@
 $router = $di->getRouter();
 
 // Define your routes here
+// Routes punya controller User
 $router->add('/',
 [
     'controller' => 'index',
@@ -45,6 +46,19 @@ $router->add('/user/logout',
     'action' => 'logout',
 ]);
 
+$router->add('/user/profile/deck/{id}',
+[
+    'controller' => 'card',
+    'action' => 'show',
+]);
+
+$router->add('/user/profile/deck/{idDeck}/card/{idCard}',
+[
+    'controller' => 'card',
+    'action' => 'open',
+]);
+
+// Routes punya controller Deck
 $router->add('/deck/create',
 [
     'controller' => 'deck',
@@ -63,12 +77,20 @@ $router->add('/deck/delete/{id}',
     'action' => 'delete',
 ]);
 
-$router->add('/user/profile/deck/{id}',
+$router->add('/deck/edit/{id}',
 [
-    'controller' => 'card',
-    'action' => 'show',
+    'controller' => 'deck',
+    'action' => 'edit',
 ]);
 
+$router->add('/deck/edit/submit',
+[
+    'controller' => 'deck',
+    'action' => 'editSubmit',
+]);
+
+
+// Routes punya controller Card
 $router->add('/card/create/',
 [
     'controller' => 'card',
@@ -85,24 +107,6 @@ $router->add('/card/delete/{id}',
 [
     'controller' => 'card',
     'action' => 'delete',
-]);
-
-$router->add('/user/profile/deck/{idDeck}/card/{idCard}',
-[
-    'controller' => 'card',
-    'action' => 'open',
-]);
-
-$router->add('/deck/edit/{id}',
-[
-    'controller' => 'deck',
-    'action' => 'edit',
-]);
-
-$router->add('/deck/edit/submit',
-[
-    'controller' => 'deck',
-    'action' => 'editSubmit',
 ]);
 
 $router->add('/card/edit/{id}',

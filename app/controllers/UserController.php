@@ -9,15 +9,9 @@ use App\Forms\LoginForm;
 class UserController extends ControllerBase
 {
 
-    public function onConstruct()
-    {
-        // $this->decksModel = new Decks();
-    }
-
     public function initialize()
     {
-        // $this->loginForm = new loginForm();
-        // $this->usersModel = new Users();
+
         $decks = Decks::find();
         // echo count($decks);
     }
@@ -42,11 +36,6 @@ class UserController extends ControllerBase
             $this->flash->error('Invalid POST');
             return $this->response->redirect('user/login');
         }
-
-        // if (!$this->security->checkToken()){
-        //     $this->flash->error('Invalid token');
-        //     return $this->response->redirect('user/login');
-        // }
 
         $form->bind($_POST, $user);
         if(!$form->isValid()){
@@ -79,7 +68,7 @@ class UserController extends ControllerBase
             if ($this->security->checkHash($password, $user->password))
             {
 
-                // Set a session
+                // Set session
                 $this->session->set('AUTH_ID', $user->id);
                 $this->session->set('AUTH_NAME', $user->name);
                 $this->session->set('AUTH_EMAIL', $user->email);
@@ -89,25 +78,11 @@ class UserController extends ControllerBase
 
                 $this->flash->success("Login Success");
 
-                // $this->dispatcher->forward([
-                //     'controller' => 'user',
-                //     'action' => 'profile',
-                //     'userID' => $user->id,
-                // ]);
-
-                // $this->dispatcher
-                // return;
-                // echo 'sukses<br>';
-                // echo $user->name;
-                // return;
                 return $this->response->redirect('user/profile');
                 // return;
             }
         } else {
-            // To protect against timing attacks. Regardless of whether a user
-            // exists or not, the script will take roughly the same amount as
-            // it will always be computing a hash.
-            // $this->flash->error("Wrong!");
+
             $this->security->hash(rand());
         }
 
@@ -161,7 +136,7 @@ class UserController extends ControllerBase
             }
         }
 
-        $this->flash->success('THX 4 registering!');
+        $this->flash->success('Registration success!');
         return $this->response->redirect('user/login');
 
         $this->view->disable();
@@ -178,16 +153,9 @@ class UserController extends ControllerBase
                 1 => $this->session->get('AUTH_ID'),
             ],
         ]);
-        // echo count($decks);
-        // foreach($decks as $deck){
-        //     echo $deck->title, "\n";
-        // }
+
         $this->view->decksData = $decks;
-        // exit;
-        // $userId = $this->dispatcher->getParam('userID');
-        // echo $userId;
-        // return;
-        // return $this->response->redirect('user/register/' . $userId);
+
     }
 
     public function logoutAction()
@@ -196,7 +164,7 @@ class UserController extends ControllerBase
 
         // Destroy the whole session
         $this->session->destroy();
-        return $this->response->redirect('user/login');
+        return $this->response->redirect('/');
     }
 
 }

@@ -14,7 +14,6 @@ class CardController extends ControllerBase
         $card = Cards::find();
         $this->view->title = "Manage Cards";
         $this->view->cards = $cards;
-        // dd($users);
     }
 
     public function initialize()
@@ -36,10 +35,6 @@ class CardController extends ControllerBase
 
     public function createSubmitAction()
     {
-        
-        // if (!$this->request->isPost()) {
-        //     return $this->response->redirect('user/login');
-        // }
 
         $this->createCardForm->bind($_POST, $this->cardModel);
 
@@ -74,14 +69,10 @@ class CardController extends ControllerBase
         $this->flash->success('Card created');
         return $this->response->redirect('user/profile/deck/'.$this->cardModel->getDeckId());
 
-        // $this->view->cardsData = $cards;
-
-        // $this->view->disable();
     }
 
     public function deleteAction($cardId)
     {
-        // $id = (int)$deckId;
 
         $conditions = ['id'=>$cardId];
         $card = Cards::findFirst([
@@ -95,7 +86,6 @@ class CardController extends ControllerBase
             }
         } else {
             return $this->response->redirect('user/profile/deck/'.$this->session->get('DECK_ON'));
-            // $this->view->pick('card/show');
         }
     }
 
@@ -118,8 +108,6 @@ class CardController extends ControllerBase
             ],
         ]);
 
-        // echo $deck->title;
-        // exit;
         $this->session->set('DECK_ON', $deck->id);
 
         $this->view->title = "Phalcon - Deck";
@@ -134,13 +122,8 @@ class CardController extends ControllerBase
     {
 
         $this->authorized();
-        
-        // echo "OEPN woy";
-        $conditions = ['idDeck'=>$deckId, 'idCard'=>$cardId];
 
-        // echo $deckId;
-        // echo $cardId;
-        // $id = $this->view->getPa
+        $conditions = ['idDeck'=>$deckId, 'idCard'=>$cardId];
         
         $card = Cards::find([
             'conditions' => 'user_id = ?1 AND deck_id = ?2 AND id = ?3',
@@ -153,7 +136,6 @@ class CardController extends ControllerBase
 
         $this->view->cardsData = $card;
 
-        // exit;
     }
 
     public function editAction($cardId)
