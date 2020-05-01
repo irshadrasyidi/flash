@@ -3,6 +3,7 @@
 $router = $di->getRouter();
 
 // Define your routes here
+
 // Routes punya controller User
 $router->add('/',
 [
