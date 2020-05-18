@@ -141,4 +141,10 @@ $router->add('/user/profile/deck/{id}/learn/{cardId}/reveal/difftime',
     'action' => 'diffTime',
 ]);
 
+$router->add('/user/profile/nextday',
+[
+    'controller' => 'deck',
+    'action' => 'nextday',
+]);
+
 $router->handle($_SERVER['REQUEST_URI']);

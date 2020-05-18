@@ -22,6 +22,15 @@
 
             <?= $this->tag->linkTo(["user/logout", '<i class="fa fa-sign-out" aria-hidden="true"></i> Logout', "class" => "btn btn-warning"]); ?>
 
+            <?php
+                echo $this->tag->linkTo([
+                    "/user/profile/nextday",
+                    'Next Day',
+                    "class" => "btn btn-secondary",
+                    "style" => "margin: 1rem;"
+                ]);
+            ?>
+
         </div>
 
         <div class="card-columns align-iten-sm-center" style="align-center">

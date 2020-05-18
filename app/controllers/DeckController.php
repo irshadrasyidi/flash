@@ -142,6 +142,7 @@ class DeckController extends ControllerBase
 
     public function learnAction($deckId)
     {
+        $this->authorized();
 
         $deck = Decks::findFirstById($deckId);
 
@@ -154,18 +155,8 @@ class DeckController extends ControllerBase
             ],
         ]);
 
-
         // $this->view->currentCard = Cards::findFirst("time = 0");
         $this->view->currentCard = $currentCard;
-
-        // $tes = Cards::findFirst([
-        //     'conditions' => 'user_id = ?1 AND deck_id = ?2 AND time =?3',
-        //     'bind' => [
-        //         1 => $this->session->get('AUTH_ID'),
-        //         2 => $deck->id,
-        //         3 => 0
-        //     ],
-        // ]);
 
         $this->view->deck = $deck;
 
@@ -176,6 +167,7 @@ class DeckController extends ControllerBase
 
     public function revealAction($deckId, $cardId)
     {
+        $this->authorized();
 
         $deck = Decks::findFirstById($deckId);
 
@@ -185,23 +177,19 @@ class DeckController extends ControllerBase
 
         // echo $deckId;
         $this->view->deckData = $deck;
-        // $this->view->cardsData = $cards;
-        // $this->view->cards2playData = $cards2play;
-        
 
-        // echo $cards2play[2]->frontside;
-        // exit;
         $this->view->pick('deck/reveal');
         
     }
 
     public function diffTimeAction($deckId, $cardId)
     {
-        echo "DIFTIM";
-        echo $deckId;
-        echo "<br>";
-        echo $cardId;
-        echo "<br>";
+        // echo "DIFTIM";
+        // echo $deckId;
+        // echo "<br>";
+        // echo $cardId;
+        // echo "<br>";
+        $this->authorized();
 
         $card = Cards::findFirstById($cardId);
 
@@ -218,31 +206,23 @@ class DeckController extends ControllerBase
             'action'     => 'learn',
         ]);
 
-        // $servername = "localhost";
-        // $username = "root";
-        // $password = "Ed4nbener";
-        // $dbname = "flash";
-
-        // $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // if ($conn->connect_error) {
-        //     die("Connection failed: " . $conn->connect_error);
-        // }
-
-        // $sql = "UPDATE `flash`.`cards` SET `time` = $weight WHERE (`id` = $cardId);";
-
-        // echo $card->id;
-
-        // $card->assign(array(
-        //     'time' => $time,
-
-        // ));
-
-        // echo $deckId;
-        // $this->view->deck = $deck;
-        // $this->view->cardsData = $cards;
-        // exit;
         $this->view->pick('deck/learn');
+        
+    }
+
+    public function nextdayAction()
+    {
+        $cards = Cards::find();
+        foreach($cards as $card){
+            if($card->time > 0){
+                $card->time -= 1;
+            }
+            $card->save();
+        }
+
+        return $this->response->redirect('user/profile');
+
+        exit;
         
     }
 
