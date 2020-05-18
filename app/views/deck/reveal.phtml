@@ -1,5 +1,7 @@
 <div class="container">
     <?php if ($currentCard) { ?>
+
+        <header>
         <?php
             echo $currentCard->frontside;
             echo "<br>";
@@ -8,7 +10,9 @@
             echo $currentCard->backside;
             
         ?>
+        </header>
 
+        <article>
         <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
 
             $diff = 3;
@@ -42,6 +46,7 @@
         <?php echo $this->tag->submitButton("Easy"); ?>
 
         </form>
+        </article>
 
     <?php }else{
         echo "habis";
