@@ -77,6 +77,20 @@ class DeckController extends ControllerBase
             'conditions' => 'id=:id:',
             'bind' => $conditions,
         ]);
+
+        $cards2del = Cards::find([
+            'conditions' => 'user_id = ?1 AND deck_id = ?2',
+            'bind' => [
+                1 => $this->session->get('AUTH_ID'),
+                2 => $deck->id
+            ],
+        ]);
+        
+        foreach($cards2del as $card2del){
+            // echo $card2del->frontside;
+            $card2del->delete();
+        }
+
         if ($deck->delete() === false) {
             $messages = $deck->getMessages();
             foreach ($messages as $message) {
