@@ -1,0 +1,49 @@
+<div class="container">
+    <?php if ($currentCard) { ?>
+        <?php
+            echo $currentCard->frontside;
+            echo "<br>";
+            echo $currentCard->time;
+            echo "<br>";
+            echo $currentCard->backside;
+            
+        ?>
+
+        <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
+
+            $diff = 3;
+            $time = 0;
+            echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
+            echo "<input type='hidden'  name='time'  value=" . $time . ">";
+            echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Again"); ?>
+
+        </form>
+
+        <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
+            $diff = 2;
+            $time = 1;
+            echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
+            echo "<input type='hidden'  name='time'  value=" . $time . ">";
+            echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Good"); ?>
+
+        </form>
+
+        <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
+            $diff = 1;
+            $time = 2;
+            echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
+            echo "<input type='hidden'  name='time'  value=" . $time . ">";
+            echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Easy"); ?>
+
+        </form>
+
+    <?php }else{
+        echo "habis";
+    } ?>
+</div>

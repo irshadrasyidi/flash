@@ -40,6 +40,12 @@ class Cards extends \Phalcon\Mvc\Model
     protected $difficulty;
 
     /**
+     *
+     * @var integer
+     */
+    protected $time;
+
+    /**
      * Method to set the value of field id
      *
      * @param integer $id
@@ -118,6 +124,19 @@ class Cards extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field time
+     *
+     * @param integer $time
+     * @return $this
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    /**
      * Returns the value of field id
      *
      * @return integer
@@ -178,6 +197,16 @@ class Cards extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field time
+     *
+     * @return integer
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
@@ -222,7 +251,8 @@ class Cards extends \Phalcon\Mvc\Model
             'user_id' => 'user_id',
             'frontside' => 'frontside',
             'backside' => 'backside',
-            'difficulty' => 'difficulty'
+            'difficulty' => 'difficulty',
+            'time' => 'time'
         ];
     }
 

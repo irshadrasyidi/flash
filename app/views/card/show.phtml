@@ -7,6 +7,18 @@
 
         <?php 
             echo $this->tag->linkTo([
+                "/user/profile/deck/".$this->session->get('DECK_ON')."/learn",
+                'Start Learning',
+                "class" => "btn btn-warning",
+                "style" => "margin-left: 2rem;",
+            ]);
+
+        ?>
+
+        <br>
+
+        <?php 
+            echo $this->tag->linkTo([
                 "/card/create",
                 'Create Card',
                 "class" => "btn btn-primary",
@@ -28,6 +40,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Front Side</th>
                     <th scope="col">Difficulty</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -45,6 +58,7 @@
                                 ?>
                             </td>
                             <td><?php echo $card->difficulty; ?></td>
+                            <td><?php echo $card->time; ?></td>
                             <td>
                                 <?php
                                     echo $this->tag->linkTo([

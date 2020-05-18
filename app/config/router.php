@@ -122,4 +122,23 @@ $router->add('/card/edit/submit',
     'action' => 'editSubmit',
 ]);
 
+// Routes learn + update2 difficulty
+$router->add('/user/profile/deck/{id}/learn',
+[
+    'controller' => 'deck',
+    'action' => 'learn',
+]);
+
+$router->add('/user/profile/deck/{id}/learn/{cardId}/reveal',
+[
+    'controller' => 'deck',
+    'action' => 'reveal',
+]);
+
+$router->add('/user/profile/deck/{id}/learn/{cardId}/reveal/difftime',
+[
+    'controller' => 'deck',
+    'action' => 'diffTime',
+]);
+
 $router->handle($_SERVER['REQUEST_URI']);

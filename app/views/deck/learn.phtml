@@ -1,0 +1,38 @@
+<div class="container">
+    <?php if ($currentCard) { ?>
+        <?php
+            echo $currentCard->frontside;
+            echo "<br>";
+            echo $currentCard->time;
+        ?>
+
+        <?php echo $this->tag->linkTo([
+                "/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal",
+                'Reveal',
+                "class" => "btn btn-light btn-lg",
+                "style" => "text-align: center;",
+            ]);
+        ?>
+
+    <?php }else{
+        echo "habis";
+        echo "<br>";
+        echo $this->tag->linkTo([
+            "/user/profile/deck/".$this->session->get('DECK_ON'),
+            'Back',
+            "class" => "btn btn-primary btn-lg",
+            "style" => "text-align: center;",
+        ]);
+    } ?>
+</div>
+
+<script>
+    // function reveal() {
+    //     var x = document.getElementById("asd-<?php echo $cards2playData[$i]->id; ?>-asd");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     } else {
+    //         x.style.display = "none";
+    //     }
+    // }
+</script>

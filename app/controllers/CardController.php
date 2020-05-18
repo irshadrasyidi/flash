@@ -54,6 +54,7 @@ class CardController extends ControllerBase
         // var_dump($this->session->get('AUTH_ID'));
         $this->cardModel->setUserId($this->session->get('AUTH_ID'));
         $this->cardModel->setDeckId($this->session->get('DECK_ON'));
+        $this->cardModel->setTime(0);
 
         if (!$this->cardModel->save()) {
             foreach ($this->cardModel->getMessages() as $m) {
