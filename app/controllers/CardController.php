@@ -176,6 +176,10 @@ class CardController extends ControllerBase
         $this->cardModel->setDeckId($this->session->get('DECK_ON'));
         $this->cardModel->setUserId($this->session->get('AUTH_ID'));
 
+        $card = Cards::findFirstById($this->session->get('CARD_ON'));
+
+        $this->cardModel->setTime($card->time);
+
         if (!$this->cardModel->save()) {
             foreach ($this->cardModel->getMessages() as $m) {
                 $this->flash->error($m);
