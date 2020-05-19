@@ -1,9 +1,47 @@
+<head>
+  <title>Learn</title>
+  <style>
+    #LearnSpace {
+        display: flex;
+        align-items: center;
+        justify-content: center 
+        }
+    }
+  </style>
+</head>
+
 <div class="container">
     <?php if ($currentCard) { ?>
+
+        <section id="LearSpace" class="team-section text-center my-5">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+                <!--Card-->
+                <div class="card front">
+                    <!--Avatar-->
+                    <div class="card-body">
+                    <!--Name-->
+                    <h4 class="font-weight-bold mb-4"><?php echo $currentCard->frontside;?></h4>
+                    <hr>
+                    <!--Quotation-->
+                    <?php echo $this->tag->linkTo([
+                        "/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal",
+                        'Reveal',
+                        "class" => "btn btn-light btn-lg",
+                        "style" => "text-align: center;",
+                        ]);
+                    ?>
+                    </div>
+                </div>
+                <!--Card-->
+                </div>
+                <!--Grid column-->
+        </section>
+        
         <?php
-            echo $currentCard->frontside;
-            echo "<br>";
-            echo $currentCard->time;
+            // echo $currentCard->frontside;
+            // echo "<br>";
+            // echo $currentCard->time;
         ?>
 
         <?php echo $this->tag->linkTo([
