@@ -43,16 +43,41 @@
             // echo $currentCard->time;
         ?>
 
-    <?php }else{
-        echo "habis";
-        echo "<br>";
-        echo $this->tag->linkTo([
-            "/user/profile/deck/".$this->session->get('DECK_ON'),
-            'Back',
-            "class" => "btn btn-primary btn-lg",
-            "style" => "text-align: center;",
-        ]);
-    } ?>
+<?php }else{  ?>
+        <section id="RevealSpace" class="team-section text-center my-5">
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+            <!--Card-->
+            <div class="card front">
+                <!--Avatar-->
+                <div class="card-body">
+                <!--Name-->
+                <h4 class="font-weight-bold mb-4">Good job!</h4>
+                <p>you've studied all today's cards on this deck</p>
+                <hr>
+                <!--Quotation-->
+                <?php echo $this->tag->linkTo([
+                        "/user/profile/deck/".$this->session->get('DECK_ON'),
+                        'Back',
+                        "class" => "btn btn-primary btn-lg",
+                        "style" => "text-align: center;",
+                    ]);
+                 ?>
+                </div>
+            </div>
+            <br>
+            <?php echo $this->tag->linkTo([
+                        "/user/profile/deck/".$this->session->get('DECK_ON'),
+                        'Back',
+                        "class" => "btn btn-primary btn-lg",
+                        "style" => "text-align: center;",
+                    ]);
+                 ?>
+            <!--Card-->
+            </div>
+            <!--Grid column-->
+    </section>
+    <?php } ?>
 </div>
 
 <script>
