@@ -42,7 +42,14 @@
         ?>
         </header>
 
-        <article>
+        <section id="GoButtons" class="team-section text-center my-5">
+        <!--Grid row-->
+        <div class="row text-center">
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-md-0 mb-5">
+
+        <div class="testimonial">
         <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
 
             $diff = 3;
@@ -50,33 +57,60 @@
             echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
             echo "<input type='hidden'  name='time'  value=" . $time . ">";
             echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
-        ?>
-        <?php echo $this->tag->submitButton("Again"); ?>
-
+            echo "<td >"." <input type='submit' name=control value='Again' style='background-color: #f44336;font-size:20px;border:none' class='submit'> "." </td>";
+            ?>
         </form>
+            
+        </div>
 
-        <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
-            $diff = 2;
-            $time = 1;
-            echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
-            echo "<input type='hidden'  name='time'  value=" . $time . ">";
-            echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
-        ?>
-        <?php echo $this->tag->submitButton("Good"); ?>
+        </div>
+            <!--Grid column-->
 
-        </form>
+            <!--Grid column-->
+            <div class="col-md-4 mb-md-0 mb-5">
 
-        <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
-            $diff = 1;
-            $time = 2;
-            echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
-            echo "<input type='hidden'  name='time'  value=" . $time . ">";
-            echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
-        ?>
-        <?php echo $this->tag->submitButton("Easy"); ?>
+            <div class="testimonial">
+            <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
 
-        </form>
-        </article>
+                $diff = 2;
+                $time = 1;
+                echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
+                echo "<input type='hidden'  name='time'  value=" . $time . ">";
+                echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+                echo "<td >"." <input type='submit' name=control value='Good' style='background-color: #008CBA;font-size:20px;border:none' class='submit'> "." </td>";
+                ?>
+
+            </form>
+                
+            </div>
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-4">
+
+            <div class="testimonial">
+            <?php echo $this->tag->form("/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal/difftime"); 
+
+                $diff = 1;
+                $time = 2;
+                echo "<input type='hidden'  name='diff'  value=" . $diff . ">";
+                echo "<input type='hidden'  name='time'  value=" . $time . ">";
+                echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+                echo "<td >"." <input type='submit' name=control value='Easy' style='background-color: #4CAF50;font-size:20px;border:none' class='submit'> "." </td>";
+                ?>
+
+            </form>
+                
+            </div>
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+    </section>
 
     <?php }else{
         echo "habis";
