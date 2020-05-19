@@ -43,14 +43,6 @@
             // echo $currentCard->time;
         ?>
 
-        <?php echo $this->tag->linkTo([
-                "/user/profile/deck/".$currentCard->deck_id."/learn/".$currentCard->id."/reveal",
-                'Reveal',
-                "class" => "btn btn-light btn-lg",
-                "style" => "text-align: center;",
-            ]);
-        ?>
-
     <?php }else{
         echo "habis";
         echo "<br>";
